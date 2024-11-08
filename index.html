@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI File Sorter</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FILE SORTER</h1>
+            <p>Upload, sort, and process your data files with ease</p>
+        </div>
+        
+        <div class="content">
+            <div class="instructions">
+                <h3>How it works</h3>
+                <p>Upload a CSV or Excel file to begin</p>
+                <p>Select a column to sort by from the dropdown menu</p>
+                <p>Choose your sorting options and preview the results</p>
+                <p>Download the processed file when ready</p>
+            </div>
+
+            <div class="upload-section" onclick="document.getElementById('fileInput').click()">
+                <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" style="display: none;">
+                <button>Choose File</button>
+                <p id="fileName">No file chosen</p>
+            </div>
+
+            <div class="sort-controls hidden" id="sortControls">
+                <select id="columnSelect">
+                    <option value="">Select column to sort by...</option>
+                </select>
+                <select id="dataTypeSelect">
+                    <option value="auto">Auto-detect type</option>
+                    <option value="text">Text</option>
+                    <option value="number">Number</option>
+                    <option value="date">Date</option>
+                </select>
+                <button onclick="sortData('asc')" id="sortAscBtn">Sort Ascending</button>
+                <button onclick="sortData('desc')" id="sortDescBtn">Sort Descending</button>
+            </div>
+
+            <div class="operations">
+                <button onclick="removeDuplicates()" id="removeDuplicatesBtn" disabled>
+                    Remove Duplicates
+                </button>
+                <button onclick="removeEmptyRows()" id="removeEmptyBtn" disabled>
+                    Remove Empty Rows
+                </button>
+                <button onclick="downloadFile()" id="downloadBtn" disabled>
+                    Download Processed File
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table id="dataTable">
+                    <thead>
+                        <tr><th>No data loaded</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Upload a file to begin</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
